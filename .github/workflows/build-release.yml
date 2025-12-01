@@ -24,7 +24,7 @@ jobs:
         swap-storage: false
      
     - name: Setup Dep
-       run:|
+      run: |
           cd $HOME
           sudo apt update
           sudo apt install -y \
