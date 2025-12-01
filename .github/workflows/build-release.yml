@@ -30,7 +30,7 @@ jobs:
           sudo apt install -y \
           build-essential cmake ninja-build python3 \
           libxml2-dev zlib1g-dev libedit-dev libncurses5-dev
-          git clone https://github.com/llvm/llvm-project.git
+          git clone https://github.com/llvm/llvm-project.git -depth 1
           cd llvm-project
           git checkout llvmorg-18.1.8
           
@@ -40,7 +40,8 @@ jobs:
           mkdir build
           cd build
           cmake -G Ninja ../llvm \
-          -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;compiler-rt;libcxx;libcxxabi" \
+          -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;compiler-rt" \
+          -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi"\
           -DCMAKE_BUILD_TYPE=Release \
           -DLLVM_TARGETS_TO_BUILD="AArch64;ARM;X86" \
           -DLLVM_ENABLE_LLD=ON \
