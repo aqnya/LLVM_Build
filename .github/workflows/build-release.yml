@@ -23,19 +23,19 @@ jobs:
         docker-images: true
         swap-storage: false
      
-     - name: Setup Dep
+    - name: Setup Dep
        run:|
           cd $HOME
           sudo apt update
           sudo apt install -y \
-  build-essential cmake ninja-build python3 \
-  libxml2-dev zlib1g-dev libedit-dev libncurses5-dev
+          build-essential cmake ninja-build python3 \
+          libxml2-dev zlib1g-dev libedit-dev libncurses5-dev
           git clone https://github.com/llvm/llvm-project.git
           cd llvm-project
           git checkout llvmorg-18.1.8
           
-      - name: Build llvm
-        run: |
+    - name: Build llvm
+      run: |
           cd $HOME/llvm-project
           mkdir build
           cd build
@@ -49,8 +49,3 @@ jobs:
           -DLLVM_ENABLE_ASSERTIONS=OFF
           ninja -j8
  
-    - name: Upload project
-      uses: actions/upload-artifact@v4
-      with:
-        name: llvm-${{ env.BUILD_TIME }}
-        path: 
